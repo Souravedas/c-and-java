@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char X[100], Y[100];
+    printf("Enter the first string: ");
+    scanf("%s", X);
+    printf("Enter the second string: ");
+    scanf("%s", Y);
+
+    int m = strlen(X);
+    int n = strlen(Y);
+
+    int length = 0;
+
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            if (X[i] == Y[j]) {
+                length++;
+                break;  // Once a match is found, move to the next character in the first string
+            }
+        }
+    }
+
+    printf("Length of Longest Common Subsequence: %d\n", length);
+
+    return 0;
+}
