@@ -4,18 +4,14 @@
 #include <regex>
 
 int main() {
-    std::cout << "Using fixed set of regular expressions and test strings from the assignment.\n";
+    int n, m;
+    std::cout << "Enter number of regular expressions: ";
+    std::cin >> n;
 
-    // Fixed regex patterns from assignment
     std::vector<std::regex> regexes;
-    std::vector<std::string> patterns = {
-        "a(bc)de",  // 1. Zero or more
-        "a(bc)+de",  // 2. One or more
-        "a(bc)?de"   // 3. Once or not at all
-    };
-
-    // Compile the regex patterns
-    for (const auto& pattern : patterns) {
+    std::string pattern;
+    std::cout << "Enter each regular expression one by one:\n";
+    while (n-- && std::cin >> pattern) {
         try {
             regexes.emplace_back("^" + pattern + "$", std::regex::extended);
         } catch (const std::regex_error &e) {
@@ -24,16 +20,11 @@ int main() {
         }
     }
 
-    // Fixed test strings
-    std::vector<std::string> testStrings = {
-        "ade",         // Matches pattern 1 and 3
-        "abcbcde",     // Matches all 3 patterns
-        "abcbde",      // Matches none
-        "abcde",       // Matches pattern 2 and 3
-        "abc"           // Matches none
-    };
-
-    for (const auto& s : testStrings) {
+    std::cout << "Enter number of test strings: ";
+    std::cin >> m;
+    std::cout << "Enter each test string one by one:\n";
+    std::string s;
+    while (m-- && std::cin >> s) {
         bool matched = false;
         for (size_t i = 0; i < regexes.size(); ++i) {
             if (std::regex_match(s, regexes[i])) {
